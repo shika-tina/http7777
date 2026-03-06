@@ -93,7 +93,7 @@ Start-Process powershell -ArgumentList "-Command `"Set-ScheduledTask -TaskName '
 ```powershell
 ipconfig | findstr IPv4    # 確認內網ip
 netstat -ano | findstr 7777  # 檢查7777端口
-cmd /c where python  # 確認python位置
+cmd /c "where python"  # 確認python位置
 python --version   # 確認python是否能用
 ```
 
