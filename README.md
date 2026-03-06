@@ -91,7 +91,7 @@ Start-Process powershell -ArgumentList "-Command `"Set-ScheduledTask -TaskName '
 ## 主機需要的條件
 
 1. 需要有安裝全域 python 的主機才能這麼做，無論是安裝在 AppData 下或者 Program Files 都可以<br>
-2. 主機上除了 Windows 內建的 Windows Defender 防火牆之外沒有安裝其他防毒軟體(因為大多數防毒軟體會無條件封鎖而不是先詢問)<br>
+2. 主機上除了 Windows 內建的 Windows Defender 防火牆之外沒有安裝其他防毒軟體(因為大多數防毒軟體會無條件封鎖外來訪問而不是先詢問)<br>
 3. 當前使用者是管理員
 
 ## 需要檢查的狀況
