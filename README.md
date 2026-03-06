@@ -90,17 +90,16 @@ Start-Process powershell -ArgumentList "-Command `"Set-ScheduledTask -TaskName '
 
 1. 需要有安裝全域 python 的主機才能這麼做，無論是安裝在 AppData 下或者 Program Files 都可以<br>
 2. 主機上除了 Windows 內建的 Windows Defender 防火牆之外沒有安裝其他防毒軟體(因為大多數防毒軟體會無條件封鎖而不是先詢問)<br>
+
+## 需要檢查的狀況
+
+1. 必須要檢查7777端口有沒有被占用，如果真的不幸被占用就只能選一個其他的數字了<br>
+2. python 是不是存在，並且可不可以用<br>
 ```powershell
 ipconfig | findstr IPv4    # 確認內網ip
 netstat -ano | findstr 7777  # 檢查7777端口
 cmd /c "where python"  # 確認python位置
 python --version   # 確認python是否能用
 ```
-
-
-## 需要檢查的狀況
-
-1. 必須要檢查7777端口有沒有被占用，如果真的不幸被占用就只能選一個其他的數字了<br>
-2. python 是不是存在，並且可不可以用<br>
 
 如果在試跑server時能夠成功，但用另外的裝置連接該主機ip的7777時連不上，大概率是因為主機上有除了 Windows Defender 之外的防毒軟體正在阻擋來自外來的請求，這個要能夠瞬間解決就有點難了(需要找到是哪個防毒軟體然後手動設定排除規則)<br>
