@@ -1,4 +1,4 @@
-# 將動作加到工作排程器當中，使每次開啟電腦都自動執行命令，存取7777端口開啟伺服器，需要管理員權限允許 python 存取網路、taskschd 和 管理員powershell 變更裝置
+# 將動作加到工作排程器當中，使每次開啟電腦都自動執行命令，存取7777端口開啟伺服器展示C槽，需要管理員權限允許 python 存取網路、taskschd 和 管理員powershell 變更裝置
 # 1.找到python位置
 $fullPath = (where.exe python)[0]
 

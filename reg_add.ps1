@@ -1,5 +1,4 @@
-# regedit add (if current user not admin then use this, after reboot port 7778 can access %userprofile%)
-
+# 將開啟 7778 端口展示 %userprofile% 的動作加到 regedit 
 # 如果python從來沒存取過網路，需要先讓他存取一次
 python.exe -c "import os; from http.server import HTTPServer, SimpleHTTPRequestHandler; os.chdir(os.environ['USERPROFILE']); print('activating testing ctrl + c to out...'); server=HTTPServer(('0.0.0.0',7777), SimpleHTTPRequestHandler); server.serve_forever()"
 
