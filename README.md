@@ -7,7 +7,7 @@ http7777, a project to simulate how a backdoor work
 serve_now.ps1                   # 立即開啟 http server 存取端口7777 並展示檔案目錄
 taskschd_add.ps1                # 將啟動7777端口展示 C:\ 的動作加入到工作排程器裡
 reg_add.ps1                     # 將啟動7777端口展示 %userprofile% 的動作加入到reg
-clear_reg_taskschd_set.bat      # 清除所有regedit設定、工作排程器設定、停止 python.exe、pythonw.exe
+clear_reg_taskschd_all.bat      # 清除所有regedit設定、工作排程器設定、停止 python.exe、pythonw.exe
 ```
 
 ## 提要
