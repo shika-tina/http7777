@@ -61,7 +61,7 @@ $value = 'powershell.exe -WindowStyle Hidden -Command "Start-Process pythonw.exe
 Set-ItemProperty -Path $registryPath -Name $name -Value $value
 ```
 
-2. 加到 taskschd.msc(工作排程器) 中，讓電腦每次重啟或登入都執行工作內容，需要管理員權限，也就是執行命令的層級會是SYSTEM，不過如果當前使用者是管理員的情況下，可以直接使用一般powershell，加入到工作排程器不需要密碼，並且也不會被 Access Denied
+2. 加到 taskschd.msc(工作排程器) 中，讓電腦每次重啟或登入都執行工作內容，需要管理員權限，也就是執行命令的層級會是SYSTEM，不過如果當前使用者是管理員的情況下，可以直接使用一般powershell，加入到工作排程器不需要管理員密碼，並且也不會被 Access Denied
 ```bash
 # 將動作加到工作排程器當中，使每次開啟電腦都自動執行命令，存取7777端口開啟伺服器展示C槽，需要管理員權限允許 python 存取網路、taskschd 和 管理員powershell 變更裝置
 # 1.找到python位置
