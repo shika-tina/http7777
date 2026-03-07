@@ -47,7 +47,7 @@ pythonw -c "import sys,os;from http.server import HTTPServer,SimpleHTTPRequestHa
 ## 使電腦重啟時也跟著啟動指令
 
 在windows電腦中想要重啟之後可以開啟或執行命令<br>
-1. 加到 regedit(登錄編輯程式) 的 `電腦\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run` 當中，加入regedit不需用管理員權限，不過如果python沒有存取網路的權限這麼做也沒有用，並且只會成功了也只能存取當前的使用者(C:\Users\\[username])，此外這會有一個缺點，在使用者登入時會閃出一瞬間的powershell，雖然幾乎看不到powershell指令內容，但這難免會讓原使用者感到警覺<br>
+1. 加到 regedit(登錄編輯程式) 的 `電腦\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run` 當中，加入regedit不需用管理員權限，不過如果python沒有存取網路的權限這麼做也沒有用，並且成功了也只能存取當前的使用者(C:\Users\\[username])，此外這會有一個缺點，在使用者登入時會閃出一瞬間的powershell，雖然幾乎看不到powershell指令內容，但這難免會讓原使用者感到警覺<br>
 
 這是一個矛盾，如果要 python 要存取網路權限，就需要管理員身分的允許，但是使用加入 regedit 的方式就是為了以防使用者不是管理員，不過我一開始想到這個方法時並不知道這點(python存取網路需要管理員允許)，總而言之這個方式基本上是沒有任何用處的，不過我還是將它陳列出來以供參考
 ```powershell
