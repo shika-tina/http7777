@@ -118,4 +118,4 @@ python --version   # 確認python是否能用
 ## 備註
 
 3/8  修改了ps1腳本ctrl+c會直接結束腳本的問題並添加了write-host註釋，並為了保險起見添加了防火牆排除規則<br>
-3/8  在powershell上執行ps1腳本似乎無法直接使用，建議直接打開powershell終端並貼上指令，或者在執行所有腳本前先打開win+r，貼上`powershell.exe -command Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
+3/8  在powershell上執行ps1腳本似乎無法直接使用，建議直接打開powershell終端並貼上指令，或者在執行所有腳本前先打開win+r，貼上`powershell -Command "Start-Process powershell -ArgumentList 'Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force' -Verb RunAs"`，若要確認是否可執行腳本，`get-executionpolicy -list`
