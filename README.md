@@ -117,4 +117,4 @@ python --version   # 確認python是否能用
 
 ## 備註
 
-| 3/8 | 修改了ps1腳本ctrl+c會直接結束腳本的問題並添加了write-host註釋 |
+    3/8     修改了ps1腳本ctrl+c會直接結束腳本的問題並添加了write-host註釋 
