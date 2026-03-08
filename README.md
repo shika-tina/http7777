@@ -102,7 +102,7 @@ Start-Process powershell -ArgumentList "-Command `"Set-ScheduledTask -TaskName '
 ```powershell
 ipconfig | findstr IPv4    # 確認內網ip
 netstat -ano | findstr 7777  # 檢查7777端口
-cmd /c "where python"  # 確認python位置
+where.exe python  # 確認python位置
 python --version   # 確認python是否能用
 ```
 
@@ -117,4 +117,4 @@ python --version   # 確認python是否能用
 
 ## 備註
 
-    3/8     修改了ps1腳本ctrl+c會直接結束腳本的問題並添加了write-host註釋 
+    3/8     修改了ps1腳本ctrl+c會直接結束腳本的問題並添加了write-host註釋，並為了保險起見添加了防火牆排除規則
