@@ -118,3 +118,4 @@ python --version   # 確認python是否能用
 ## 備註
 
 3/8  修改了ps1腳本ctrl+c會直接結束腳本的問題並添加了write-host註釋，並為了保險起見添加了防火牆排除規則
+3/8  在powershell上執行ps1腳本似乎無法使用，建議直接打開powershell終端並貼上指令
