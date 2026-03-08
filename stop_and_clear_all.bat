@@ -8,6 +8,13 @@ echo ---刪除taskschd---
 schtasks /delete /tn "MyPythonServer" /f
 
 echo.
+echo ---刪除防火牆規則---
+powershell.exe -command "Start-Process powershell.exe -Verb runas -ArgumentList '-Command Remove-NetFirewallRule -DisplayName ''Open Port 7777'' ; read-host ''Enter鍵繼續..'''"
+
+::如果想要在執行完後自動關閉管理員powershell視窗，那就用這行指令
+::powershell.exe -command "Start-Process powershell.exe -Verb runas -ArgumentList '-Command Remove-NetFirewallRule -DisplayName ''Open Port 7777'' '"
+
+echo.
 echo ---檢查7777端口---
 netstat -ano | findstr 7777
 
