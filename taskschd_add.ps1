@@ -30,7 +30,7 @@ Write-Host "--------------------------------------------"
 $job = Start-Job -ScriptBlock { python.exe -c $using:pythonCommand }
 
 # 3-3. 暫停腳本，直到使用者按下「任意按鍵」
-# (這能避開 Ctrl+C 導致整個視窗關閉的問題)
+# (這能避開 Ctrl+C 導致整個視窗關閉的問題
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 # 3-4. 關閉並清理背景程序
@@ -41,14 +41,14 @@ Remove-Job $job
 # 3-5. 後續腳本內容
 Write-Host "Server 已成功關閉！" -ForegroundColor Green
 
-# 放進排程器裡的字數是有上限的(所以把程式縮減了)
+# 放進排程器裡的字數是有上限的(所以把程式縮減了
 $code = "import sys,os;from http.server import HTTPServer as h,SimpleHTTPRequestHandler as s;os.chdir(''C:/'');sys.stdout=open(os.devnull,''w'');h((''0.0.0.0'',7777),s).serve_forever()"
 
 # 4. 將任務加進排程器裡
 Write-Host "加入工作排程器..."
 Start-Process schtasks -ArgumentList "/create /tn `"MyPythonServer`" /tr `"\`"$pypath\`" -c \`"$code\`"`" /sc onstart /ru system /f" -Verb RunAs
 
-# 5. 立即修改該任務的電源設定 (允許非AC電源時仍然啟動，且換成電池時不停止)
+# 5. 立即修改該任務的電源設定 (允許非AC電源時仍然啟動，且換成電池時不停止
 Write-Host "修改工作任務電源設定..."
 Start-Process powershell -ArgumentList "-Command `"Set-ScheduledTask -TaskName 'MyPythonServer' -Settings (New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries)`"" -Verb RunAs
 

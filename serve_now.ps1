@@ -5,4 +5,4 @@ Start-Process pythonw.exe -ArgumentList "-c ""import sys,os;from http.server imp
 # pythonw 隱藏視窗存取 7778 端口、資料夾位置 %userprofile%
 Start-Process pythonw.exe -ArgumentList "-c ""import sys,os;from http.server import HTTPServer,SimpleHTTPRequestHandler;os.chdir(os.environ['USERPROFILE']); sys.stdout=open(os.devnull,'w');sys.stderr=open(os.devnull,'w');server=HTTPServer(('0.0.0.0',7778),SimpleHTTPRequestHandler);server.serve_forever()""" -WorkingDirectory $env:USERPROFILE -WindowStyle Hidden
 
-
+read-host "pause.."
